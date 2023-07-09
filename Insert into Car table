@@ -1,0 +1,16 @@
+import mysql.connector as c
+con=c.connect(host="localhost",user="root",passwd="Prakhar@2003",database="vis")
+cursor=con.cursor()
+while True:
+    engine_no=int(input("Enter the engine Number:"))
+    car_model=(input("Enter the car Model:"))
+    car_make=(input("Enter the car manufacturer:"))
+    c_id=int(input("Enter the corresponding customer id:"))
+    policy_no=int(input("Enter the corresponding policy number:"))
+    query="insert into car values({},'{}','{}',{},{})".format(engine_no,car_model,car_make,c_id,policy_no)
+    cursor.execute(query)
+    con.commit()
+    print("Data Inserted Successfully...")
+    x=int(input("1-> Enter more \n2->exit\nEnter Choice"))
+    if x==2:
+        break
