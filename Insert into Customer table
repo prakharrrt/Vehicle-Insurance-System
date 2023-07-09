@@ -1,0 +1,14 @@
+import mysql.connector as c
+con=c.connect(host="localhost",user="root",passwd="Prakhar@2003",database="vis")
+cursor=con.cursor()
+while True:
+    c_id=int(input("Enter the customer Id:"))
+    c_name=input("Enter Customer Name:")
+    query="insert into customer values({},'{}')".format(c_id,c_name)
+    cursor.execute(query)
+    con.commit()
+    print("Data Inserted Successfully...")
+    x=int(input("1-> Enter more \n2->exit\nEnter Choice"))
+    if x==2:
+        break
+                
