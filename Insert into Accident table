@@ -1,0 +1,17 @@
+import mysql.connector as c
+con=c.connect(host="localhost",user="root",passwd="Prakhar@2003",database="vis")
+cursor=con.cursor()
+while True:
+    FIR_NO=int(input("Enter the FIR Number:"))
+    location=(input("Enter the location of accident :"))
+    date=(input("Enter the accident date:"))
+    engine_no=int(input("Enter the corresponding engine Number:"))
+    driver_name=(input("Enter the drivers name:"))
+    workshop_name=(input("Enter the Workshop Name:"))
+    query="insert into accident values({},'{}','{}',{},'{}','{}')".format(FIR_NO,location,date,engine_no,driver_name,workshop_name)
+    cursor.execute(query)
+    con.commit()
+    print("Data Inserted Successfully...")
+    x=int(input("1-> Enter more \n2->exit\nEnter Choice"))
+    if x==2:
+        break
