@@ -1,0 +1,46 @@
+import mysql.connector as c
+con=c.connect(host="localhost",user="root",passwd="Prakhar@2003",database="vis")
+cursor=con.cursor()
+while True:
+            print("-----CHOOSE AN OPTION-----")
+            print("1: RENEW POLICY")
+            print("2: CHANGE TYPE OF POLICY")
+            print("3: FILE AN ACCIDENT")
+            j=int(input("Enter Option:"))
+            if j==1:
+                C=int(input("Enter the corresponding customer Id for which you want to renew the policy:"))
+                V=(input("Enter the new validity Date:"))
+                query="UPDATE insurance SET valid_date=%s WHERE c_id=%s"
+                data=(V,C)
+                cursor.execute(query,data)
+                con.commit()
+                print("Data updated successfully...")
+                x=int(input("1-> Enter more \n2->exit\nEnter Choice"))
+                if x==2:
+                    break
+            if j==2:
+                C=int(input("Enter the corresponding customer Id for which you want to change the policy type:"))
+                V=(input("Enter the new policy type:"))
+                query="UPDATE insurance SET policy_name=%s WHERE c_id=%s"
+                data=(V,C)
+                cursor.execute(query,data)
+                con.commit()
+                print("Data updated successfully...")
+                x=int(input("1-> Enter more \n2->exit\nEnter Choice"))
+                if x==2:
+                    break
+
+            if j==3:
+                FIR_NO=int(input("Enter the FIR Number:"))
+                location=(input("Enter the location of accident :"))
+                date=(input("Enter the accident date:"))
+                engine_no=int(input("Enter the engine Number:"))
+                driver_name=(input("Enter the drivers name:"))
+                workshop_name=(input("Enter the Workshop Name:"))
+                query="insert into accident values({},'{}','{}',{},'{}','{}')".format(FIR_NO,location,date,engine_no,driver_name,workshop_name)
+                cursor.execute(query)
+                con.commit()
+                print("Data Inserted Successfully...")
+                x=int(input("1-> Enter more \n2->exit\nEnter Choice"))
+                if x==2:
+                    break
