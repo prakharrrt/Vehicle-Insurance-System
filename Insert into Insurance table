@@ -1,0 +1,15 @@
+import mysql.connector as c
+con=c.connect(host="localhost",user="root",passwd="Prakhar@2003",database="vis")
+cursor=con.cursor()
+while True:
+    policy_no=int(input("Enter the policy number:"))
+    valid_date=(input("Enter the validity Date:"))
+    policy_name=(input("Enter the policy name:"))
+    c_id=int(input("Enter the corresponding customer id:"))
+    query="insert into insurance values({},'{}','{}',{})".format(policy_no,valid_date,policy_name,c_id)
+    cursor.execute(query)
+    con.commit()
+    print("Data Inserted Successfully...")
+    x=int(input("1-> Enter more \n2->exit\nEnter Choice"))
+    if x==2:
+        break
